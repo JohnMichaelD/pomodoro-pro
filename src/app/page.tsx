@@ -87,7 +87,7 @@ export default function Home() {
             15m
           </Button>
           <Button 
-            onClick={() => setTimer(.5)} 
+            onClick={() => setTimer(5)} 
             variant={selectedPreset === 5 ? 'success' : 'primary'}
           >
             5m
