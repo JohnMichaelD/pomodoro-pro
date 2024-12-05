@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Button from './components/buttons/Button';
 
 interface TimerDisplayProps {
@@ -18,6 +18,12 @@ export default function Home() {
   const [timeRemaining, setTimeRemaining] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState(25);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio('/ringtone.mp3');
+  }, []);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | undefined;
@@ -28,6 +34,11 @@ export default function Home() {
           if (prev <= 1) {
             clearInterval(interval);
             setIsRunning(false);
+            if (!isMuted && audioRef.current) {
+              audioRef.current.play().catch(error => {
+                console.log('Audio playback failed:', error);
+              });
+            }
             return 0;
           }
           return prev - 1;
@@ -35,7 +46,7 @@ export default function Home() {
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [isRunning]);
+  }, [isRunning, isMuted]);
 
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
@@ -45,6 +56,10 @@ export default function Home() {
   const handleReset = () => {
     setIsRunning(false);
     setTimeRemaining(selectedPreset * 60);
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
   };
 
   const setTimer = (minutes: number): void => {
@@ -72,7 +87,7 @@ export default function Home() {
             15m
           </Button>
           <Button 
-            onClick={() => setTimer(5)} 
+            onClick={() => setTimer(.5)} 
             variant={selectedPreset === 5 ? 'success' : 'primary'}
           >
             5m
@@ -93,6 +108,13 @@ export default function Home() {
             <Button onClick={handlePause} variant="warning">Pause</Button>
           )}
           <Button onClick={handleReset}>Reset</Button>
+          <Button 
+            onClick={toggleMute} 
+            variant={isMuted ? 'warning' : 'primary'}
+            aria-label={isMuted ? 'Unmute alarm' : 'Mute alarm'}
+          >
+            {isMuted ? '🔇' : '🔊'}
+          </Button>
         </section>
       </main>
     </div>
