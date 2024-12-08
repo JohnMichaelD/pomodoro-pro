@@ -69,10 +69,9 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-4 items-center h-full">
-        <h1 className="text-4xl">Pomodoro Timer</h1>
-
+    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-blue-100">
+      <header className="flex flex-col sm:flex-row items-center justify-between bg-black text-white w-full p-4">
+        <h1 className="font-monofett text-4xl">Pomodoro Buddy</h1>  
         <section className="flex gap-4">
           <Button 
             onClick={() => setTimer(25)} 
@@ -93,14 +92,16 @@ export default function Home() {
             5m
           </Button>
         </section>
-
-        <div className="relative">
-          <img src="GreenTomato.png" alt="Green Tomato" className="mb-8" />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-slate-600 rounded border border-black p-2 text-white shadow-lg">
-            <TimerDisplay minutes={minutes} seconds={seconds} />
-          </div>
+      </header>
+  
+      <main className="flex items-center justify-center">
+        {/* adding animations here */}
+      </main>
+  
+      <footer className="relative flex flex-col items-center bg-black text-white w-full p-4">
+        <div className="absolute -top-24 bg-slate-600 rounded border border-black p-2 text-white shadow-lg">
+          <TimerDisplay minutes={minutes} seconds={seconds} />
         </div>
-        
         <section className="flex gap-4">
           {!isRunning ? (
             <Button onClick={handleStart} variant="success">Start</Button>
@@ -108,15 +109,15 @@ export default function Home() {
             <Button onClick={handlePause} variant="warning">Pause</Button>
           )}
           <Button onClick={handleReset}>Reset</Button>
-          <Button 
+          {/* <Button 
             onClick={toggleMute} 
             variant={isMuted ? 'warning' : 'primary'}
             aria-label={isMuted ? 'Unmute alarm' : 'Mute alarm'}
           >
             {isMuted ? '🔇' : '🔊'}
-          </Button>
+          </Button> */}
         </section>
-      </main>
+      </footer>
     </div>
   );
 }
