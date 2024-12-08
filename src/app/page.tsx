@@ -109,13 +109,13 @@ export default function Home() {
             <Button onClick={handlePause} variant="warning">Pause</Button>
           )}
           <Button onClick={handleReset}>Reset</Button>
-          {/* <Button 
+          <Button 
             onClick={toggleMute} 
             variant={isMuted ? 'warning' : 'primary'}
             aria-label={isMuted ? 'Unmute alarm' : 'Mute alarm'}
           >
             {isMuted ? '🔇' : '🔊'}
-          </Button> */}
+          </Button>
         </section>
       </footer>
     </div>
