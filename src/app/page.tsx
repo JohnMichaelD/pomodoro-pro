@@ -69,27 +69,27 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-blue-100">
-      <header className="flex flex-col sm:flex-row items-center justify-between bg-black text-white w-full p-4">
+    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-blue-100 border-l-8 border-r-8 border-black" style={{ backgroundImage: 'url("/clown.jpg")', backgroundSize: '100% 100%'  }}>
+      <header className="flex flex-col lg:flex-row items-center justify-between text-white w-full bg-black p-2">
         <h1 className="font-monofett text-4xl">Pomodoro Buddy</h1>  
         <section className="flex gap-4">
           <Button 
             onClick={() => setTimer(25)} 
             variant={selectedPreset === 25 ? 'success' : 'primary'}
           >
-            25m
+            Pomodoro
           </Button>
           <Button 
             onClick={() => setTimer(15)} 
             variant={selectedPreset === 15 ? 'success' : 'primary'}
           >
-            15m
+            Long Break
           </Button>
           <Button 
             onClick={() => setTimer(5)} 
             variant={selectedPreset === 5 ? 'success' : 'primary'}
           >
-            5m
+            Short Break
           </Button>
         </section>
       </header>
@@ -99,7 +99,7 @@ export default function Home() {
       </main>
   
       <footer className="relative flex flex-col items-center bg-black text-white w-full p-4">
-        <div className="absolute -top-24 bg-slate-600 rounded border border-black p-2 text-white shadow-lg">
+        <div className="absolute -top-20 bg-black rounded-tl-3xl rounded-tr-3xl p-2 text-white shadow-lg">
           <TimerDisplay minutes={minutes} seconds={seconds} />
         </div>
         <section className="flex gap-4">
