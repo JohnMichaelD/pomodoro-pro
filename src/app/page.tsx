@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Button from './components/buttons/Button';
+import CursorFish from './components/CursorFish';
 
 interface TimerDisplayProps {
   minutes: number;
@@ -69,33 +70,33 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-blue-100 border-l-8 border-r-8 border-black" style={{ backgroundImage: 'url("/clown.jpg")', backgroundSize: '100% 100%'  }}>
-      <header className="flex flex-col lg:flex-row items-center justify-between text-white w-full bg-black p-2">
-        <h1 className="font-monofett text-4xl">Pomodoro Buddy</h1>  
+    <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white">
+      <header className="flex flex-col lg:flex-row items-center justify-between text-white w-full p-2">
+        <h1 className="font-monofett text-4xl text-red-600">Pomodoro Buddy</h1>  
         <section className="flex gap-4">
           <Button 
             onClick={() => setTimer(25)} 
             variant={selectedPreset === 25 ? 'success' : 'primary'}
           >
-            Pomodoro
+            pomodoro
           </Button>
           <Button 
             onClick={() => setTimer(15)} 
             variant={selectedPreset === 15 ? 'success' : 'primary'}
           >
-            Long Break
+            long break
           </Button>
           <Button 
             onClick={() => setTimer(5)} 
             variant={selectedPreset === 5 ? 'success' : 'primary'}
           >
-            Short Break
+            short break
           </Button>
         </section>
       </header>
   
-      <main className="flex items-center justify-center">
-        {/* adding animations here */}
+      <main className="flex items-center justify-center h-full w-full">
+        <CursorFish />
       </main>
   
       <footer className="relative flex flex-col items-center bg-black text-white w-full p-4">
@@ -104,11 +105,11 @@ export default function Home() {
         </div>
         <section className="flex gap-4">
           {!isRunning ? (
-            <Button onClick={handleStart} variant="success">Start</Button>
+            <Button onClick={handleStart} variant="success">start</Button>
           ) : (
-            <Button onClick={handlePause} variant="warning">Pause</Button>
+            <Button onClick={handlePause} variant="warning">pause</Button>
           )}
-          <Button onClick={handleReset}>Reset</Button>
+          <Button onClick={handleReset}>reset</Button>
           <Button 
             onClick={toggleMute} 
             variant={isMuted ? 'warning' : 'primary'}

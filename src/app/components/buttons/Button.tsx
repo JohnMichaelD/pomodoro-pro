@@ -12,9 +12,9 @@ const Button: React.FC<ButtonProps> = ({ onClick, children, variant = 'primary' 
     const baseStyles = 'w-40 h-8 rounded-lg cursor-pointer select-none transition-all duration-150 font-bold text-sm';
     
     const variants: Record<ButtonVariant, string> = {
-      primary: 'bg-blue-500 text-white',
-      success: 'bg-green-500 text-white',
-      warning: 'bg-yellow-500 text-white'
+      primary: 'bg-orange-600 text-white',
+      success: 'bg-red-600 text-white',
+      warning: 'bg-yellow-600 text-white'
     };
   
     return (
