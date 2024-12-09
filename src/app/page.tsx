@@ -22,6 +22,7 @@ export default function Home() {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  
   useEffect(() => {
     audioRef.current = new Audio('/ringtone.mp3');
   }, []);
@@ -51,6 +52,17 @@ export default function Home() {
 
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
+
+  useEffect(() => {
+    // Format time for tab display
+    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    document.title = isRunning 
+      ? `(${formattedTime}) Pomodoro Buddy`
+      : 'Pomodoro Buddy';
+    return () => {
+      document.title = 'Pomodoro Buddy';
+    };
+  }, [minutes, seconds, isRunning]);
 
   const handleStart = () => setIsRunning(true);
   const handlePause = () => setIsRunning(false);
