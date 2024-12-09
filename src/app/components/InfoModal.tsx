@@ -27,7 +27,7 @@ interface InfoModalProps {
                 <li>Long Break: 15-minute rest</li>
               </ul>
             </div>
-            <p>I see you've already met Buddy, our resident tomato clownfish. He'll keep you company as you work through each cycle.</p>
+            <p>I see you&apos;ve already met Buddy, our resident tomato clownfish. He&apos;ll keep you company as you work through each cycle.</p>
           </div>
         </div>
       </div>
