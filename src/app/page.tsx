@@ -21,33 +21,74 @@ export default function Home() {
   const [selectedPreset, setSelectedPreset] = useState(25);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const endTimeRef = useRef<number | null>(null);
 
   
   useEffect(() => {
-    audioRef.current = new Audio('/ringtone.mp3');
-  }, []);
-
-  useEffect(() => {
-    let interval: ReturnType<typeof setInterval> | undefined;
-
+    let animationFrameId: number;
+    let intervalId: NodeJS.Timeout;
+  
     if (isRunning) {
-      interval = setInterval(() => {
-        setTimeRemaining(prev => {
-          if (prev <= 1) {
-            clearInterval(interval);
+      if (!endTimeRef.current) {
+        endTimeRef.current = Date.now() + timeRemaining * 1000;
+      }
+  
+      const updateTimer = () => {
+        if (endTimeRef.current) {
+          const currentTime = Date.now();
+          const remaining = Math.max(0, Math.ceil((endTimeRef.current - currentTime) / 1000));
+  
+          if (remaining <= 0) {
             setIsRunning(false);
+            endTimeRef.current = null;
+            setTimeRemaining(0);
+            document.title = 'Time Up! - Pomodoro Buddy';
             if (!isMuted && audioRef.current) {
               audioRef.current.play().catch(error => {
                 console.log('Audio playback failed:', error);
               });
             }
-            return 0;
+          } else {
+            setTimeRemaining(remaining);
+            // Update title with current time
+            const mins = Math.floor(remaining / 60);
+            const secs = remaining % 60;
+            const formattedTime = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            document.title = `(${formattedTime}) Pomodoro Buddy`;
+            animationFrameId = requestAnimationFrame(updateTimer);
           }
-          return prev - 1;
-        });
+        }
+      };
+  
+      // Use requestAnimationFrame for active tab
+      animationFrameId = requestAnimationFrame(updateTimer);
+  
+      // default to interval when tab is inactive
+      intervalId = setInterval(() => {
+        if (endTimeRef.current) {
+          const currentTime = Date.now();
+          const remaining = Math.max(0, Math.ceil((endTimeRef.current - currentTime) / 1000));
+          const mins = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          const formattedTime = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+          document.title = `(${formattedTime}) Pomodoro Buddy`;
+        }
       }, 1000);
+  
+    } else {
+      endTimeRef.current = null;
+      document.title = 'Pomodoro Buddy';
     }
-    return () => clearInterval(interval);
+  
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      document.title = 'Pomodoro Buddy';
+    };
   }, [isRunning, isMuted]);
 
   const minutes = Math.floor(timeRemaining / 60);
@@ -65,9 +106,15 @@ export default function Home() {
   }, [minutes, seconds, isRunning]);
 
   const handleStart = () => setIsRunning(true);
-  const handlePause = () => setIsRunning(false);
+
+  const handlePause = () => {
+    setIsRunning(false);
+    endTimeRef.current = null;
+  };
+
   const handleReset = () => {
     setIsRunning(false);
+    endTimeRef.current = null;
     setTimeRemaining(selectedPreset * 60);
   };
 
@@ -79,6 +126,7 @@ export default function Home() {
     setSelectedPreset(minutes);
     setTimeRemaining(minutes * 60);
     setIsRunning(false);
+    endTimeRef.current = null;
   };
 
   return (
