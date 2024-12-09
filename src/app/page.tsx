@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Button from './components/buttons/Button';
 import CursorFish from './components/CursorFish';
+import InfoModal from './components/InfoModal';
+import { FaInfo } from "react-icons/fa";
+
 
 interface TimerDisplayProps {
   minutes: number;
@@ -10,7 +13,7 @@ interface TimerDisplayProps {
 }
 
 const TimerDisplay = ({ minutes, seconds } : TimerDisplayProps) => (
-  <div className="text-6xl font-mono font-bold bg-black p-2">
+  <div className="text-6xl font-mono font-bold text-red-600 p-2">
     {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
   </div>
 );
@@ -22,6 +25,7 @@ export default function Home() {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const endTimeRef = useRef<number | null>(null);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   
   useEffect(() => {
@@ -133,7 +137,7 @@ export default function Home() {
     <div className="min-h-screen grid grid-rows-[auto_1fr_auto] bg-white">
       <header className="flex flex-col lg:flex-row items-center justify-between text-white w-full p-2">
         <h1 className="font-monofett text-4xl text-red-600">Pomodoro Buddy</h1>  
-        <section className="flex gap-4">
+        <section className="flex gap-2">
           <Button 
             onClick={() => setTimer(25)} 
             variant={selectedPreset === 25 ? 'success' : 'primary'}
@@ -152,6 +156,13 @@ export default function Home() {
           >
             short break
           </Button>
+          <button 
+            onClick={() => setIsInfoModalOpen(true)} 
+            className="bg-red-600 rounded-full p-2 hover:bg-red-700 transition-colors"
+            aria-label="Show information"
+          >
+            <FaInfo />
+          </button>
         </section>
       </header>
   
@@ -159,11 +170,11 @@ export default function Home() {
         <CursorFish />
       </main>
   
-      <footer className="relative flex flex-col items-center bg-black text-white w-full p-4">
-        <div className="absolute -top-20 bg-black rounded-tl-3xl rounded-tr-3xl p-2 text-white shadow-lg">
+      <footer className="relative flex flex-col items-center text-white w-full p-4">
+        <div className="absolute -top-20 rounded-tl-3xl rounded-tr-3xl p-2 text-white">
           <TimerDisplay minutes={minutes} seconds={seconds} />
         </div>
-        <section className="flex gap-4">
+        <section className="flex gap-2">
           {!isRunning ? (
             <Button onClick={handleStart} variant="success">start</Button>
           ) : (
@@ -179,6 +190,10 @@ export default function Home() {
           </Button>
         </section>
       </footer>
+      <InfoModal 
+        isOpen={isInfoModalOpen} 
+        onClose={() => setIsInfoModalOpen(false)} 
+      />
     </div>
   );
 }

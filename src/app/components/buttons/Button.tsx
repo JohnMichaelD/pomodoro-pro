@@ -9,12 +9,12 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, children, variant = 'primary' }) => {
-    const baseStyles = 'w-40 h-8 rounded-lg cursor-pointer select-none transition-all duration-150 font-bold text-sm';
+    const baseStyles = 'w-40 h-8 rounded-full cursor-pointer select-none transition-all duration-150 font-bold text-sm';
     
     const variants: Record<ButtonVariant, string> = {
-      primary: 'bg-orange-600 text-white',
-      success: 'bg-red-600 text-white',
-      warning: 'bg-yellow-600 text-white'
+      primary: 'bg-white text-black border border-black',
+      success: 'bg-black text-white',
+      warning: 'bg-red-900 text-white'
     };
   
     return (
