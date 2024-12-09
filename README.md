@@ -8,8 +8,7 @@ https://mcmerwe.co.za/shop/tomato-clownfish/
 - adding animate for correct time tracking, but interval for tab
 
 # Features to add:
--  "Attention span of a fish"
-- Informational modal
 - Better animations
 - Gamification. Every cycle, recieve fish food to feed fish.
 - to do list
+- feature flags
