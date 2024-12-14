@@ -27,6 +27,9 @@ export default function Home() {
   const endTimeRef = useRef<number | null>(null);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
+  useEffect(() => {
+    audioRef.current = new Audio('/ringtone.mp3');
+  }, []);
   
   useEffect(() => {
     let animationFrameId: number;
