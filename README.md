@@ -13,12 +13,12 @@ Note: this is a remake to another pomodoro timer app I made back when learning t
 # Issues Faced:
 - set interval was not actually committing time correctly
 - adding animate for correct time tracking, but interval for tab
-- getting fish to return to center when cursor leaves screen
+- getting fish to return to center when cursor leaves screen, works locally, but not on production.
 
 # Features to add:
 - I'd like to add better animations. Add a 3D rendered clownfish. Either using three.js or similar
 - Gamification. Add fun features like fish food recieved after every completed cycle or to do item. Feed fish
-- Add a simple to do list
+- Update to do list, and track time per task? (limit task to one at a time?)
 - Add feature flags for practice
 - Update follow feature to work for mobile touch
 

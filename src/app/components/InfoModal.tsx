@@ -25,6 +25,7 @@ interface InfoModalProps {
                 <li>Pomodoro: 25-minute work session</li>
                 <li>Short Break: 5-minute rest</li>
                 <li>Long Break: 15-minute rest</li>
+                <li>Add tasks to focus on: focus on one task.</li>
               </ul>
             </div>
             <p>I see you&apos;ve already met Buddy, our resident tomato clownfish. He&apos;ll keep you company as you work through each cycle.</p>
