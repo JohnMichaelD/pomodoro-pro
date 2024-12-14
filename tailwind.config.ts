@@ -16,6 +16,7 @@ export default {
         monofett: ['var(--font-monofett)'],
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
+        nanumPenScript: ['var(--font-nanum-pen)'],
       },
     },
   },

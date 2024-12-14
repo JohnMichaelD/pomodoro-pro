@@ -74,7 +74,7 @@ const TaskList = () => {
               >
                 <FaCheck className={task.completed ? "text-green-500" : "text-gray-400"} />
               </button>
-              <span className={`flex-grow ${task.completed ? "line-through text-gray-400" : ""}`}>
+              <span className={`flex-grow font-nanumPenScript text-2xl ${task.completed ? "line-through text-gray-400" : ""}`}>
                 {task.text}
               </span>
               <button
@@ -94,7 +94,7 @@ const TaskList = () => {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Add task"
-          className="flex-grow p-2 border rounded"
+          className="flex-grow p-2 border rounded font-nanumPenScript text-xl"
         />
         <button
           onClick={handleAddTask}
