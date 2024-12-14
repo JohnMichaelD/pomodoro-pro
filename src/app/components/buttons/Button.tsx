@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, children, variant = 'primary' }) => {
-    const baseStyles = 'w-40 h-8 rounded-full cursor-pointer select-none transition-all duration-150 font-bold text-sm';
+    const baseStyles = 'w-min p-4 sm:w-40 h-8 rounded-full cursor-pointer select-none transition-all duration-150 font-bold text-sm';
     
     const variants: Record<ButtonVariant, string> = {
       primary: 'bg-white text-black border border-black',

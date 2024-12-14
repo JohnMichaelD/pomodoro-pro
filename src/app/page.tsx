@@ -148,17 +148,19 @@ export default function Home() {
             onClick={() => setTimer(15)} 
             variant={selectedPreset === 15 ? 'success' : 'primary'}
           >
-            long break
+            <span className="hidden sm:inline">long break</span>
+            <span className="sm:hidden">15m</span>
           </Button>
           <Button 
-            onClick={() => setTimer(5)} 
-            variant={selectedPreset === 5 ? 'success' : 'primary'}
+            onClick={() => setTimer(.5)} 
+            variant={selectedPreset === .5 ? 'success' : 'primary'}
           >
-            short break
+            <span className="hidden sm:inline">short break</span>
+            <span className="sm:hidden">5m</span>
           </Button>
           <button 
             onClick={() => setIsInfoModalOpen(true)} 
-            className="bg-red-600 rounded-full p-2 hover:bg-red-700 transition-colors"
+            className="bg-red-600 rounded-full p-2 px-2.5 hover:bg-red-700 transition-colors"
             aria-label="Show information"
           >
             <FaInfo />
