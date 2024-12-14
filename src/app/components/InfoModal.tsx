@@ -18,7 +18,7 @@ interface InfoModalProps {
           </button>
           <h2 className="text-2xl font-bold mb-4 text-red-600">Attention span of a fish?</h2>
           <div className="text-gray-700 space-y-4">
-            <p>The Pomodoro Technique is a time management method that uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks.</p>
+            <p>The <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" className="underline hover:text-red-600">Pomodoro Technique</a> is a time management method that uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks.</p>
             <div className="space-y-2">
               <h3 className="font-semibold">How to use:</h3>
               <ul className="list-disc pl-5">

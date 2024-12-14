@@ -5,6 +5,7 @@ import Button from './components/buttons/Button';
 import CursorFish from './components/CursorFish';
 import InfoModal from './components/InfoModal';
 import { FaInfo } from "react-icons/fa";
+import TaskList from './components/TaskList'
 
 
 interface TimerDisplayProps {
@@ -155,8 +156,8 @@ export default function Home() {
             <span className="sm:hidden">15m</span>
           </Button>
           <Button 
-            onClick={() => setTimer(.5)} 
-            variant={selectedPreset === .5 ? 'success' : 'primary'}
+            onClick={() => setTimer(5)} 
+            variant={selectedPreset === 5 ? 'success' : 'primary'}
           >
             <span className="hidden sm:inline">short break</span>
             <span className="sm:hidden">5m</span>
@@ -173,6 +174,7 @@ export default function Home() {
   
       <main className="flex items-center justify-center h-full w-full">
         <CursorFish />
+        <TaskList />
       </main>
   
       <footer className="relative flex flex-col items-center text-white w-full p-4">
