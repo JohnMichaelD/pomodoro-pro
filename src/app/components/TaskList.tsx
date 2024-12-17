@@ -62,7 +62,7 @@ const TaskList = () => {
   };
 
   return (
-    <div className="flex flex-col items-center border rounded-lg p-4 hover:shadow-lg gap-4 min-w-[340px] z-50">
+    <div className="flex flex-col items-center border rounded-lg p-4 hover:shadow-lg gap-4 z-50 max-w-[400px]">
       {tasks.length > 0 && (
         <ul className="w-full space-y-2 max-h-48 overflow-y-auto">
           {tasks.map(task => (
@@ -88,13 +88,13 @@ const TaskList = () => {
           ))}
         </ul>
       )}
-      <div className="flex w-full gap-2">
+      <div className="flex gap-2">
         <input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Add task"
-          className="flex-grow p-2 border rounded font-nanumPenScript text-xl"
+          className="flex-grow max-w-60 sm:w-96 p-2 border rounded font-nanumPenScript text-xl"
         />
         <button
           onClick={handleAddTask}
