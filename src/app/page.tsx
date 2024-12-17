@@ -178,7 +178,7 @@ export default function Home() {
       </main>
   
       <footer className="relative flex flex-col items-center text-white w-full p-4">
-        <div className="absolute -top-20 rounded-tl-3xl rounded-tr-3xl p-2 text-white">
+        <div className="absolute -top-20 rounded-tl-3xl rounded-tr-3xl p-2 text-white z-50">
           <TimerDisplay minutes={minutes} seconds={seconds} />
         </div>
         <section className="flex gap-2">
