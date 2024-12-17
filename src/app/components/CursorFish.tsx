@@ -142,7 +142,7 @@ const CursorFish = () => {
       ? 'left 0.5s ease-out, top 0.5s ease-out' 
       : 'transform 0.3s ease-out', // Smooth flip animation
     pointerEvents: 'none', // Prevent image from interfering with cursor
-    zIndex: 50,
+    zIndex: 25,
     width: '250px',
     height: '250px'
   } as const;

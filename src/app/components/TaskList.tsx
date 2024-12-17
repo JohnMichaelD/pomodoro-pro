@@ -62,7 +62,7 @@ const TaskList = () => {
   };
 
   return (
-    <div className="flex flex-col items-center border rounded-lg p-4 hover:shadow-lg gap-4 min-w-[340px]">
+    <div className="flex flex-col items-center border rounded-lg p-4 hover:shadow-lg gap-4 min-w-[340px] z-50">
       {tasks.length > 0 && (
         <ul className="w-full space-y-2 max-h-48 overflow-y-auto">
           {tasks.map(task => (
